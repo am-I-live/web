@@ -5,7 +5,7 @@ import axios from "axios";
 import { FC } from "react";
 import { Stream } from "../types/steam.type";
 import { VOD } from "../types/vod.type";
-import { useRouter } from "next/router";
+import router from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { GetStreamer, StreamerDatum } from "../types/streamer.type";
 
@@ -61,8 +61,6 @@ type Props = {
 };
 
 const streamer: FC<Props> = ({ stream, vods, user }) => {
-	const { push } = useRouter();
-
 	if (user == null) {
 		return (
 			<main className={styles.main}>
@@ -105,7 +103,7 @@ const streamer: FC<Props> = ({ stream, vods, user }) => {
 					{stream.data[0] == null ? (
 						<span className="rounded-md shadow-sm">
 							<button
-								onClick={() => push(resolveRedirect)}
+								onClick={() => router.push(resolveRedirect)}
 								type="button"
 								className="mt-5 w-full px-3 py-4 border border-transparent text-xl leading-4 font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
 							>
@@ -118,7 +116,7 @@ const streamer: FC<Props> = ({ stream, vods, user }) => {
 						<span className="rounded-md shadow-sm">
 							<button
 								onClick={() =>
-									push(`https://www.twitch.tv/${user.display_name}`)
+									router.push(`https://www.twitch.tv/${user.display_name}`)
 								}
 								type="button"
 								className="mt-5 w-full px-3 py-4 border border-transparent text-xl leading-4 font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
