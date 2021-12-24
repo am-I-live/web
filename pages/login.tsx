@@ -40,9 +40,9 @@ const login: FC<Props> = ({ activeSession, session }) => {
 	const router = useRouter();
 	const [showMagicMail, setMagicMail] = useState<boolean>(false);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (activeSession) router.push("/user/home");
-	}, []);
+	});
 
 	return (
 		<div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
